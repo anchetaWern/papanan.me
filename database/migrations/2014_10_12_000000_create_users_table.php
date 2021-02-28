@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
 
             $table->enum('user_type', ['admin', 'business_owner'])->default('business_owner');
-            $table->boolean('is_enabled')->false();
+            $table->boolean('is_enabled')->default(false);
 
             $table->timestamp('approved_at')->nullable();
 
