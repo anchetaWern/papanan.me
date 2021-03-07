@@ -15,6 +15,10 @@ class BusinessForm extends Component
     public $email = '';
     public $description = '';
 
+    public $website_url = '';
+    public $facebook = '';
+    public $instagram = '';
+
 
     public function __construct()
     {
@@ -27,6 +31,10 @@ class BusinessForm extends Component
         $this->phone_number = $business->phone_number;
         $this->email = $business->email;
         $this->description = $business->description;
+
+        $this->website_url = $business->website_url;
+        $this->facebook = $business->facebook;
+        $this->instagram = $business->instagram;
     }
 
 
@@ -51,5 +59,19 @@ class BusinessForm extends Component
 
         session()->flash('message', 'Business info updated!');
 
+    }
+
+    public function saveElsewhere()
+    {
+        $validated = $this->validate([
+            'website_url' => 'url',
+            'facebook' => 'url',
+            'instagram' => 'url',
+        ]);
+
+        auth()->user()
+            ->business->update($validated);
+
+        session()->flash('elsewhere_message', 'Social media updated!');
     }
 }

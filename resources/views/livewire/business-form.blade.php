@@ -94,4 +94,75 @@
 
         </div>
     </div>
+
+    <div class="mt-5">
+        <div class="md:grid md:grid-cols-3 md:gap-6">
+            <div class="md:col-span-1">
+                <div class="px-4 sm:px-0">
+                    <h3 class="text-lg font-medium leading-6 text-gray-900">Elsewhere</h3>
+                </div>
+            </div>
+
+            <div class="mt-5 md:mt-0 md:col-span-2">
+                <div class="mb-3">
+                    @if (session()->has('elsewhere_message'))
+
+                    <div class="bg-green-300 px-4 py-3 rounded-md shadow-md" role="alert">
+                        <div class="flex">
+                            <div class="py-1"><svg class="fill-current h-6 w-6 mr-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z"/></svg>
+                            </div>
+                            <div class="mt-1">
+                                <p>{{ session('elsewhere_message') }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    @endif
+                </div>
+
+                <form action="#" method="POST" wire:submit.prevent="saveElsewhere">
+                    <div class="shadow sm:rounded-md sm:overflow-hidden">
+
+                        <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
+                            <div class="grid grid-cols-6 gap-6">
+                                <div class="col-span-6 sm:col-span-3">
+                                    <label for="website_url" class="block text-sm font-medium text-gray-700">Website URL</label>
+                                    <input type="text" name="website_url" id="website_url" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" wire:model="website_url" placeholder="http://yourwebsite.com">
+                                    @error('website_url') <span class="text-xs text-red-500">{{ $message }}</span> @enderror
+                                </div>
+                            </div>
+
+
+                            <div class="grid grid-cols-6 gap-6">
+                                <div class="col-span-6 sm:col-span-3">
+                                    <label for="facebook" class="block text-sm font-medium text-gray-700">Facebook Page URL</label>
+                                    <input type="text" name="facebook" id="facebook" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" wire:model="facebook">
+                                    @error('facebook') <span class="text-xs text-red-500">{{ $message }}</span> @enderror
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-3">
+                                    <label for="instagram" class="block text-sm font-medium text-gray-700">Instagram Profile URL</label>
+                                    <input type="text" name="instagram" id="instagram" autocomplete="family-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" wire:model="instagram">
+                                    @error('instagram') <span class="text-xs text-red-500">{{ $message }}</span> @enderror
+                                </div>
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
+                            <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                Save
+                            </button>
+                        </div>
+
+
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+    </div>
 </div>
