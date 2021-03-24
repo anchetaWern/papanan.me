@@ -10,4 +10,8 @@ class Business extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    protected $casts = [
+        'opening_hours' => 'json'
+    ];
 }

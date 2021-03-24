@@ -26,6 +26,9 @@ class BusinessForm extends Component
     public $card_image = '';
     public $cover_image = '';
 
+    public $days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+
+    public $opening_hours;
 
     public function __construct()
     {
@@ -45,6 +48,7 @@ class BusinessForm extends Component
 
         $this->card_image = $business->card_image;
         $this->cover_image = $business->cover_image;
+        $this->opening_hours = $business->opening_hours;
     }
 
 
@@ -94,5 +98,15 @@ class BusinessForm extends Component
             ->business->update($validated);
 
         session()->flash('elsewhere_message', 'Social media updated!');
+    }
+
+    public function saveOpeningHours()
+    {
+        auth()->user()
+            ->business->update([
+                'opening_hours' => $this->opening_hours
+            ]);
+
+        session()->flash('opening_hours_message', 'Opening hours updated!');
     }
 }
