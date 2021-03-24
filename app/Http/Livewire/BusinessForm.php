@@ -4,9 +4,13 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Business;
+use Livewire\WithFileUploads;
+use Str;
 
 class BusinessForm extends Component
 {
+
+    use WithFileUploads;
 
     public $name = '';
     public $url = '';
@@ -18,6 +22,9 @@ class BusinessForm extends Component
     public $website_url = '';
     public $facebook = '';
     public $instagram = '';
+
+    public $card_image = '';
+    public $cover_image = '';
 
 
     public function __construct()
@@ -35,6 +42,9 @@ class BusinessForm extends Component
         $this->website_url = $business->website_url;
         $this->facebook = $business->facebook;
         $this->instagram = $business->instagram;
+
+        $this->card_image = $business->card_image;
+        $this->cover_image = $business->cover_image;
     }
 
 
@@ -52,7 +62,18 @@ class BusinessForm extends Component
             'phone_number' => 'required',
             'email' => 'required|email',
             'description' => 'nullable',
+            'card_image' => 'required|image|max:10240',
+            'cover_image' => 'required|image|max:10240',
         ]);
+
+        $card_image = Str::random(10);
+        $cover_image = Str::random(10);
+
+        $this->card_image->storeAs('photos', $card_image);
+        $this->cover_image->storeAs('photos', $cover_image);
+
+        $validated['card_image'] = $card_image;
+        $validated['cover_image'] = $cover_image;
 
         auth()->user()
             ->business->update($validated);

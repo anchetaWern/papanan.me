@@ -81,11 +81,63 @@
                                 </p>
                             </div>
 
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">
+                                Card image
+                                </label>
+                                <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                                    <div class="space-y-1 text-center">
+                                      @if ($card_image)
+                                      <div class="mb-3">
+                                          <img src="{{ img($card_image) }}" class="object-contain h-100 w-full">
+                                      </div>
+                                      @endif
+
+                                      <div class="text-sm text-gray-600">
+                                        <label for="card_image" class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+                                          <span>Upload a file</span>
+                                          <input id="card_image" name="card_image" type="file" wire:model="card_image" class="sr-only">
+                                        </label>
+                                        <p class="pl-1">or drag and drop</p>
+                                      </div>
+                                      <p class="text-xs text-gray-500">
+                                        PNG or JPG up to 10MB
+                                      </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                              <label class="block text-sm font-medium text-gray-700">
+                                Cover image
+                              </label>
+                              <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                                <div class="space-y-1 text-center">
+                                  @if ($cover_image)
+                                  <div class="mb-3">
+                                      <img src="{{ img($cover_image) }}" class="object-contain h-100 w-full">
+                                  </div>
+                                  @endif
+
+                                  <div class="text-sm text-gray-600">
+                                    <label for="cover_image" class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+                                      <span>Upload a file</span>
+                                      <input id="cover_image" name="cover_image" type="file" wire:model="cover_image" class="sr-only">
+                                    </label>
+                                    <p class="pl-1">or drag and drop</p>
+                                  </div>
+                                  <p class="text-xs text-gray-500">
+                                    PNG or JPG up to 10MB
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+
                         </div>
 
                         <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
                             <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                Save
+                              Save
                             </button>
                         </div>
                     </div>
