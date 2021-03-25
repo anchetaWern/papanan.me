@@ -26,9 +26,10 @@ class BusinessForm extends Component
     public $card_image = '';
     public $cover_image = '';
 
-    public $days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
-
     public $opening_hours;
+    public $amenities = ['has_parking', 'has_outdoor_dining', 'has_event_accommodation', 'has_wifi', 'accepts_credit_card', 'has_food_delivery'];
+
+    public $amenities_values;
 
     public function __construct()
     {
@@ -49,6 +50,17 @@ class BusinessForm extends Component
         $this->card_image = $business->card_image;
         $this->cover_image = $business->cover_image;
         $this->opening_hours = $business->opening_hours;
+
+        $amenities = $business->amenities;
+
+        $this->amenities_values = [
+            'has_parking' => $amenities->has_parking,
+            'has_outdoor_dining' => $amenities->has_outdoor_dining,
+            'has_event_accommodation' => $amenities->has_event_accommodation,
+            'has_wifi' => $amenities->has_wifi,
+            'accepts_credit_card' => $amenities->accepts_credit_card,
+            'has_food_delivery' => $amenities->has_food_delivery,
+        ];
     }
 
 
@@ -108,5 +120,20 @@ class BusinessForm extends Component
             ]);
 
         session()->flash('opening_hours_message', 'Opening hours updated!');
+    }
+
+    public function saveAmenities()
+    {
+        auth()->user()
+            ->business->amenities->update([
+                'has_parking' => $this->amenities_values['has_parking'],
+                'has_outdoor_dining' => $this->amenities_values['has_outdoor_dining'],
+                'has_event_accommodation' => $this->amenities_values['has_event_accommodation'],
+                'has_wifi' => $this->amenities_values['has_wifi'],
+                'accepts_credit_card' => $this->amenities_values['accepts_credit_card'],
+                'has_food_delivery' => $this->amenities_values['has_food_delivery'],
+            ]);
+
+        session()->flash('amenities_message', 'Amenities updated!');
     }
 }
