@@ -406,18 +406,26 @@
                     <label class="block text-sm font-medium text-gray-700">
                     Photos
                     </label>
+
                     <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                         <div class="space-y-1 text-center">
+
                           @foreach ($images as $image)
                           <div class="mb-5">
                               <img src="{{ img($image, 'images/business/') }}" class="object-contain h-100 w-full">
                           </div>
                           @endforeach
 
+                          @foreach ($temp_images as $image)
+                          <div class="mb-5">
+                              <img src="{{ img($image, 'images/business/') }}" class="object-contain h-100 w-full">
+                          </div>
+                          @endforeach
+
                           <div class="text-sm text-gray-600">
-                            <label for="images" class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+                            <label for="temp_images" class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
                               <span>Upload a file</span>
-                              <input id="images" name="images" type="file" wire:model="images" class="sr-only" multiple>
+                              <input id="temp_images" name="temp_images" type="file" wire:model="temp_images" class="sr-only" multiple>
                             </label>
 
                           </div>

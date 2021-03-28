@@ -33,6 +33,7 @@ class BusinessForm extends Component
     public $amenities_values;
 
     public $images = [];
+    public $temp_images = [];
 
     public function __construct()
     {
@@ -65,6 +66,7 @@ class BusinessForm extends Component
             'has_food_delivery' => $amenities->has_food_delivery,
         ];
 
+        $this->temp_images = [];
         $this->images = $business->images;
     }
 
@@ -145,12 +147,12 @@ class BusinessForm extends Component
     public function saveImages()
     {
         $validated = $this->validate([
-            'images.*' => 'required|image|max:10240',
+            'temp_images.*' => 'required|image|max:10240',
         ]);
 
-        $new_images = [];
+        $new_images = $this->images;
 
-        foreach ($this->images as $img) {
+        foreach ($this->temp_images as $img) {
             $img_name = Str::random(10);
             $img->storeAs('images/business', $img_name);
 
