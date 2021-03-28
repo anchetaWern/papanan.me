@@ -98,7 +98,7 @@
                                           <span>Upload a file</span>
                                           <input id="card_image" name="card_image" type="file" wire:model="card_image" class="sr-only">
                                         </label>
-                                        <p class="pl-1">or drag and drop</p>
+
                                       </div>
                                       <p class="text-xs text-gray-500">
                                         PNG or JPG up to 10MB
@@ -124,7 +124,7 @@
                                       <span>Upload a file</span>
                                       <input id="cover_image" name="cover_image" type="file" wire:model="cover_image" class="sr-only">
                                     </label>
-                                    <p class="pl-1">or drag and drop</p>
+
                                   </div>
                                   <p class="text-xs text-gray-500">
                                     PNG or JPG up to 10MB
@@ -419,7 +419,7 @@
                               <span>Upload a file</span>
                               <input id="images" name="images" type="file" wire:model="images" class="sr-only" multiple>
                             </label>
-                            <p class="pl-1">or drag and drop</p>
+
                           </div>
                           <p class="text-xs text-gray-500">
                             PNG or JPG up to 10MB
