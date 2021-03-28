@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Business;
 use Livewire\WithFileUploads;
 use Str;
+use App\Models\BusinessImage;
 
 class BusinessForm extends Component
 {
@@ -30,6 +31,8 @@ class BusinessForm extends Component
     public $amenities = ['has_parking', 'has_outdoor_dining', 'has_event_accommodation', 'has_wifi', 'accepts_credit_card', 'has_food_delivery'];
 
     public $amenities_values;
+
+    public $images = [];
 
     public function __construct()
     {
@@ -61,6 +64,8 @@ class BusinessForm extends Component
             'accepts_credit_card' => $amenities->accepts_credit_card,
             'has_food_delivery' => $amenities->has_food_delivery,
         ];
+
+        $this->images = $business->images;
     }
 
 
@@ -135,5 +140,28 @@ class BusinessForm extends Component
             ]);
 
         session()->flash('amenities_message', 'Amenities updated!');
+    }
+
+    public function saveImages()
+    {
+        $validated = $this->validate([
+            'images.*' => 'required|image|max:10240',
+        ]);
+
+        $new_images = [];
+
+        foreach ($this->images as $img) {
+            $img_name = Str::random(10);
+            $img->storeAs('images/business', $img_name);
+
+            $new_images[] = $img_name;
+        }
+
+        auth()->user()
+            ->business->update([
+                'images' => $new_images
+            ]);
+
+        session()->flash('images_message', 'Photos updated!');
     }
 }

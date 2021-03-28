@@ -13,7 +13,8 @@ class Business extends Model
     protected $guarded = [];
 
     protected $casts = [
-        'opening_hours' => 'json'
+        'opening_hours' => 'json',
+        'images' => 'json',
     ];
 
     public function amenities() {
